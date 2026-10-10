@@ -1,6 +1,22 @@
 import java.util.Arrays;
 
 public class Ordenadores {
+
+    public static <T extends Comparable<T>>
+    void insertionSort(T[] a) {
+        int n = a.length;
+
+        for (int i = 1; i < n; i++) {
+            T chave = a[i];
+            int j = i - 1;
+            while (j >= 0 && a[j].compareTo(chave)  > 0) {
+                a[j+1] = a[j];
+                j--;
+            }
+            a[j+1]=chave;
+        }
+    }
+
     public static <T extends Comparable<T>>
     void selectionSort(T[] a) {
         for (int i = 0; i < a.length; i++) {
@@ -43,17 +59,17 @@ public class Ordenadores {
     }
 
     public static void main(String[] args) {
-        Integer[] numeros = {3,1,4,6,2,10,24,11,2,7};
+        Integer[] numeros = {3,1,4,6,2};
         Integer[] worstCase = {1,2,3,4,5,6,7,8,9};
         System.out.println("Números antes da ordenação: " + Arrays.toString(numeros));
-        Ordenadores.selectionSort(numeros);
+        Ordenadores.insertionSort(numeros);
         System.out.println("Números após a ordenação: " + Arrays.toString(numeros));
         System.out.println("Números antes da ordenação: " + Arrays.toString(worstCase));
-        Ordenadores.selectionSort(worstCase);
+        Ordenadores.insertionSort(worstCase);
         System.out.println("Números após a ordenação: " + Arrays.toString(worstCase));
 
         String[] nomes = {"Ana", "Debora", "Bruno", "Joao", "Carlos"};
-        Ordenadores.selectionSort(nomes);
+        Ordenadores.insertionSort(nomes);
         System.out.println("Nomes ordenados:" + Arrays.toString(nomes));
     }
 
